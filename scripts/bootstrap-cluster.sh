@@ -26,7 +26,7 @@ update_properties() {
   cat $properties_file
 }
 
-kill_kafka() {
+kill_kafka_connect() {
   echo Killing mm...
   docker kill mm
   docker rm mm
@@ -93,7 +93,7 @@ done
 echo Bootstrapping Mirrormaker worker with "$image"
 
 update_properties "$trust_pass" "$key_pass"
-kill_kafka
+kill_kafa_connect
 create_volume
 load_certificates "$image"
 start_kafka_connect  "$image"
