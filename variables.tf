@@ -65,7 +65,7 @@ variable "key_store" {
   )
 }
 
-variable "mm2_prpoperties" {
+variable "mm2_properties" {
   description = "mm2 properties file path"
   type      = string
 }

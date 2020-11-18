@@ -14,8 +14,8 @@ module "kafka" {
   bastion_host      = "bastion.host"
   user              = "ronswanson"
   private_key       = file("~/.ssh/dec.key")
-  user_groups       = ["ronswanson", "poc"]a
-  mm2_prpoperties   = "~/mm2.properties"
+  user_groups       = ["ronswanson", "poc"]
+  mm2_properties   = "~/mm2.properties"
 
   trust_store   = {
     truststore = "./kafkatruststore.jks"

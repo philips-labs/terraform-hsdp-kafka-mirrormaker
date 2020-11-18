@@ -68,7 +68,7 @@ resource "null_resource" "cluster" {
   }
   
   provisioner "file" {
-    source      = var.mm2_prpoperties
+    source      = var.mm2_properties
     destination = "/home/${var.user}/mm2.properties"
   }
 
