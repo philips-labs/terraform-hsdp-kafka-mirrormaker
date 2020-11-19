@@ -64,11 +64,11 @@ resource "null_resource" "cluster" {
 
   provisioner "file" {
     source      = var.key_store.keystore
-    destination = "/home/${var.user}/mm_keystore.jks"
+    destination = "/home/${var.user}/mm.keystore.jks"
   }
   
   provisioner "file" {
-    source      = var.mm2_prpoperties
+    source      = var.mm2_properties
     destination = "/home/${var.user}/mm2.properties"
   }
 
