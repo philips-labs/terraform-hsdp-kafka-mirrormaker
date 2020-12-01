@@ -4,6 +4,12 @@ variable "instance_type" {
   default     = "t3.large"
 }
 
+variable "host_name" {
+  description = "Middle name for the host, default is random"
+  type =  string
+  default = ""
+}
+
 variable "volume_size" {
   description = "The volume size to use in GB"
   type        = number
