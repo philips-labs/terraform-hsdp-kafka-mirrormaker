@@ -10,6 +10,12 @@ variable "host_name" {
   default = ""
 }
 
+variable "tld" {
+  type = string
+  default = "dev"
+  description = "The tld for your host default is a dev"
+}
+
 variable "volume_size" {
   description = "The volume size to use in GB"
   type        = number
