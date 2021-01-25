@@ -6,13 +6,13 @@ variable "instance_type" {
 
 variable "host_name" {
   description = "Middle name for the host, default is random"
-  type =  string
-  default = ""
+  type        = string
+  default     = ""
 }
 
 variable "tld" {
-  type = string
-  default = "dev"
+  type        = string
+  default     = "dev"
   description = "The tld for your host default is a dev"
 }
 
@@ -63,21 +63,21 @@ variable "private_key" {
 
 variable "trust_store" {
   description = "Akey store for SSL"
-  type        = object(
-    { truststore  = string ,
-      password    = string }
+  type = object(
+    { truststore = string,
+    password = string }
   )
 }
 
 variable "key_store" {
   description = "Akey store for SSL"
-  type        = object(
-    { keystore  = string ,
-      password  = string }
+  type = object(
+    { keystore = string,
+    password = string }
   )
 }
 
 variable "mm2_properties" {
   description = "mm2 properties file path"
-  type      = string
+  type        = string
 }
