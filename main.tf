@@ -42,7 +42,7 @@ resource "hsdp_container_host_exec" "cluster" {
   }
 
   bastion_host = var.bastion_host
-  host         = element(hsdp_container_host.kafka.*.private_ip, count.index)
+  host         = element(hsdp_container_host.kafka_connect.*.private_ip, count.index)
   user         = var.user
   private_key  = var.private_key
   
