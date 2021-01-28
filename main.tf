@@ -26,11 +26,9 @@ resource "hsdp_container_host" "kafka_connect" {
   user         = var.user
   private_key  = var.private_key
 
-  provisioner "remote-exec" {
-    inline = [
-      "docker volume create kafka",
-    ]
-  }
+  commands = [
+      "docker volume create kafka"
+  ]
 }
 
 resource "hsdp_container_host_exec" "cluster" {
