@@ -81,3 +81,9 @@ variable "mm2_properties" {
   description = "mm2 properties file path"
   type      = string
 }
+
+variable "subnet_type" {
+  description = "subnet type to use for Container Host"
+  type        = string
+  default     = "public"
+}

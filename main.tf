@@ -9,6 +9,7 @@ resource "hsdp_container_host" "kafka_connect" {
   volumes       = 1
   volume_size   = var.volume_size
   instance_type = var.instance_type
+  subnet_type   = var.subnet_type
 
   user_groups     = var.user_groups
   security_groups = ["analytics"]
