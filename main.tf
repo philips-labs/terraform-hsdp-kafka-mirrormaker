@@ -26,13 +26,9 @@ resource "hsdp_container_host" "kafka_connect" {
   bastion_host = var.bastion_host
   user         = var.user
   private_key  = var.private_key
-
-  commands = [
-      "docker volume create kafka"
-  ]
 }
 
-resource "hsdp_container_host_exec" "cluster" {
+resource "ssh_resource" "cluster" {
   count = var.nodes
 
   triggers = {
@@ -44,14 +40,14 @@ resource "hsdp_container_host_exec" "cluster" {
   host         = element(hsdp_container_host.kafka_connect.*.private_ip, count.index)
   user         = var.user
   private_key  = var.private_key
-  
+
   file {
     source      = "${path.module}/scripts/bootstrap-cluster.sh"
     destination = "/home/${var.user}/bootstrap-cluster.sh"
   }
 
   file {
-    source      =  var.trust_store.truststore
+    source      = var.trust_store.truststore
     destination = "/home/${var.user}/truststore.jks"
   }
 
@@ -59,7 +55,7 @@ resource "hsdp_container_host_exec" "cluster" {
     source      = var.key_store.keystore
     destination = "/home/${var.user}/mm.keystore.jks"
   }
-  
+
   file {
     source      = var.mm2_properties
     destination = "/home/${var.user}/mm2.properties"
@@ -67,7 +63,8 @@ resource "hsdp_container_host_exec" "cluster" {
 
   # Bootstrap script called with private_ip of each node in the cluster
   commands = [
-      "chmod +x /home/${var.user}/bootstrap-cluster.sh",
-      "/home/${var.user}/bootstrap-cluster.sh -d ${var.image} -t ${var.trust_store.password} -k ${var.key_store.password}"
+    "docker volume create kafka || true",
+    "chmod +x /home/${var.user}/bootstrap-cluster.sh",
+    "/home/${var.user}/bootstrap-cluster.sh -d ${var.image} -t ${var.trust_store.password} -k ${var.key_store.password}"
   ]
 }
